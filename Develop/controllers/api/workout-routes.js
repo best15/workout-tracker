@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const db = require("../../models");
 
-//get api/workouts
+//Get all workouts
 router.get("/", async (req, res) => {
 
     try {
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
                 },
             },
         ]);
-        console.log("allWorkouts------", allWorkouts);
+
         res.status(200).json(allWorkouts);
     } catch (error) {
         console.log(error);
@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
 });
 
 
-//get aapi/workouts/range
+//get api/workouts/range -- find last seven workouts
 router.get("/range", async (req, res) => {
     try {
 
@@ -41,7 +41,7 @@ router.get("/range", async (req, res) => {
                 },
 
             },
-            { $sort: { day: -1 } },
+            { $sort: { day: -1 } }, //descending order
 
         ]).limit(7);
 
@@ -50,6 +50,44 @@ router.get("/range", async (req, res) => {
         console.log(error);
         res.status(500).json(error);
     }
+});
+
+
+//Create New Workout
+router.post("/", async (req, res) => {
+
+    try {
+        const newWorkout = await db.Workout.create(req.body);
+
+        res.json(newWorkout);
+
+    } catch (error) {
+
+        res.status(500).send(error);
+    }
+
+});
+
+//Update Workout
+router.put("/:id", async (req, res) => {
+
+    try {
+        const updateWorkout = await db.Workout.updateOne(
+            { _id: req.params.id },
+            {
+                $set: {
+                    exercises: req.body,
+                },
+            },
+        );
+
+        res.json(updateWorkout);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+
 });
 
 
