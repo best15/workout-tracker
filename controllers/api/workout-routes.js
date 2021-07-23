@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const db = require("../../models");
 
-//Get all workouts
+//Get All Workouts
 router.get("/", async (req, res) => {
 
     try {
