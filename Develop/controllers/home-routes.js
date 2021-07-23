@@ -1,15 +1,15 @@
-const { route } = require("./api");
-
 const router = require("express").Router();
+const path = require('path');
 
-// const { Blog, User, Comment } = require("../models");
 
-// router.get("/", (req, res) => {
-//     db.Book.find({})
-//       .then(dbBook => {
-//         res.json(dbBook);
-//       })
-//       .catch(err => {
-//         res.json(err);
-//       });
-//   });
+router.get("/stats", (req, res) => {
+    console.log("statsssssss", __dirname);
+    res.sendFile(path.join(__dirname, "../public/stats.html"));
+});
+
+router.get("/exercise", (req, res) => {
+    console.log("exercise", __dirname);
+    res.sendFile(path.join(__dirname, "../public/exercise.html"));
+});
+
+module.exports = router;
