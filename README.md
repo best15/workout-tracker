@@ -8,7 +8,7 @@ Workout Tracker an application where you can create,view and track all your exer
 
 ## Application Deployed Link
 
-[Workout Tracker](https://fathomless-eyrie-46989.herokuapp.com/)
+[Workout Tracker](https://workout-tracker-app-21.herokuapp.com/)
 
 ## Screenshots
 
